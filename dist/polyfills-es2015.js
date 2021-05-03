@@ -1,13 +1,13 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["polyfills"],{
 
-/***/ 1:
+/***/ 2:
 /*!********************************!*\
   !*** multi ./src/polyfills.ts ***!
   \********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/skuarch/Projects/magmascraper/src/polyfills.ts */"hN/g");
+module.exports = __webpack_require__(/*! /home/skuarch/Projects/magmascraper.github.io/src/polyfills.ts */"hN/g");
 
 
 /***/ }),
@@ -3053,5 +3053,5 @@ Zone.__load_patch('PromiseRejectionEvent', (global, Zone) => {
 
 /***/ })
 
-},[[1,"runtime"]]]);
-//# sourceMappingURL=polyfills.js.map
+},[[2,"runtime"]]]);
+//# sourceMappingURL=polyfills-es2015.js.map
