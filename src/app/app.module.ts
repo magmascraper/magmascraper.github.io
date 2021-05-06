@@ -17,6 +17,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MockDataService } from '../app/services/mock-data.service';
 import { WebDetailsComponent } from './components/web-details/web-details.component';
@@ -42,7 +43,8 @@ import { WebDetailsComponent } from './components/web-details/web-details.compon
     HttpClientModule,
     MatCardModule,
     MatChipsModule,
-    MatGridListModule
+    MatGridListModule,
+    FlexLayoutModule
   ],
   providers: [MockDataService],
   bootstrap: [AppComponent]
