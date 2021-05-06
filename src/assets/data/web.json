@@ -1,0 +1,20 @@
+[
+  {
+    "url": "http://medium.com",
+    "description": "website for developers",
+    "tags": [
+      "rxjs",
+      "angular",
+      "typescript"
+    ]
+  },
+  {
+    "url": "http://realpython.com",
+    "description": "python turorials",
+    "tags": [
+      "python",
+      "django",
+      "pip"
+    ]
+  }
+]

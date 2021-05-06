@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-index',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  constructor() { }
+  textSearchSubject: Subject<string>;
+  webItems: any;
+
+  constructor() {
+    this.textSearchSubject = new Subject();
+    this.webItems = '';
+  }
 
   ngOnInit(): void {
+    this.textSearchSubject.subscribe(result => {
+      this.webItems = result;
+    });
   }
 
 }
