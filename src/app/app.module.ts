@@ -14,6 +14,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { MockDataService } from '../app/services/mock-data.service';
 import { WebDetailsComponent } from './components/web-details/web-details.component';
@@ -36,7 +39,10 @@ import { WebDetailsComponent } from './components/web-details/web-details.compon
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule,
+    MatChipsModule,
+    MatGridListModule
   ],
   providers: [MockDataService],
   bootstrap: [AppComponent]
