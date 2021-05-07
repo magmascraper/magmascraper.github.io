@@ -1,8 +1,7 @@
-import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Subject, } from 'rxjs';
-import { debounceTime, switchMap, distinctUntilChanged, filter } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
-import { MockDataService } from '../../services/mock-data.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -11,57 +10,32 @@ import { MockDataService } from '../../services/mock-data.service';
 })
 export class SearchBarComponent implements OnInit {
 
+  @Input() textSearchSubject: Subject<any> = new Subject();
   formControl: FormControl = new FormControl('');
-  searchedString: string = '';
-  searchSubject: Subject<string> = new Subject();
-  @Output() textToSearch = new EventEmitter<string>();
-  @Input() textSearchSubject: Subject<string> = new Subject();
+  textSubject: Subject<string> = new Subject();
+  error: any;
 
-  constructor(private readonly mockDataService: MockDataService) {
-  }
+  constructor() {}
 
   ngOnInit(): void {
     this.formControl.valueChanges.subscribe(() => {
-      if (!this.validateSearch()) {
-        return;
+      if (this.formControl.value === '') {
+        this.textSearchSubject.next('');
       }
-      this.searchSubject.next(this.formControl.value);
+      this.textSubject.next(this.formControl.value);
     });
 
-    this.searchSubject
+    this.textSubject
       .pipe(
         debounceTime(1100),
         filter(text => text.length > 2),
-        distinctUntilChanged(),
-        switchMap((text) => {
-          return this.mockDataService.getData(text);
-      })
-      ).subscribe(json => {
-        this.textSearchSubject.next(json);
+        distinctUntilChanged()
+      ).subscribe((text: any) => {
+        this.textSearchSubject.next(text);
       }, (error) => {
         console.log('Error:', error);
+        this.error = error;
       });
-  }
-
-  private validateSearch(): boolean {
-
-    let flag = false;
-
-    if (!this.formControl.value || this.searchedString == this.formControl.value) {
-      this.searchedString = this.formControl.value;
-      flag = false;
-    }
-
-    if (this.formControl.value.length < 3) {
-      flag = false;
-    }
-
-    if ((this.formControl.value == 'Enter' && this.formControl.value.length > 3) || this.formControl.value.length > 2) {
-      flag = true;
-    }
-
-    this.searchedString = this.formControl.value;
-    return flag;
   }
 
 }

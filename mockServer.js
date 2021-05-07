@@ -12,11 +12,10 @@ app.use('/data', (req, res) => {
   webs.push({
     "name": "Medium",
     "url": "http://medium.com",
-    "description": "Medium is an open platform where readers find dynamic thinking, and where expert and undiscovered voices can share their writing on any topic. more text here for test!, more text here for test!more text here for test!",
+    "description": "Medium is an open platform where readers find dynamic thinking, and where expert and undiscovered voices can share their writing on any topic.",
     "tags": [
       "rxjs",
-      "angular",
-      "typescript"
+      "angular"
     ]
   });
   webs.push({
@@ -25,14 +24,13 @@ app.use('/data', (req, res) => {
     "description": "Learn Python online: Python tutorials for developers of all skill levels, Python books and courses, Python news, code examples, articles, and more.",
     "tags": [
       "python",
-      "django",
-      "pip"
+      "django"      
     ]
   });
   webs.push({
     "name": "Dev Community",
     "url": "http://realpython.com",
-    "description": "A constructive and inclusive social network for software developers. With you every step of your journey.more text here for test!more text here for test!",
+    "description": "A constructive and inclusive social network for software developers. With you every step of your journey.",
     "tags": [
       "programming",
       "code"
@@ -51,7 +49,7 @@ app.use('/data', (req, res) => {
   webs.push({
     "name": "NRock",
     "url": "https://ngrok.com/docs",
-    "description": "ngrok allows you to expose a web server running on your local machine to the internet. Just tell ngrok what port your web server is listening on more text here just for testing the size.",
+    "description": "ngrok allows you to expose a web server running on your local machine to the internet. Just tell ngrok what port your web server is listening on.",
     "tags": [
       "network",
       "devops"

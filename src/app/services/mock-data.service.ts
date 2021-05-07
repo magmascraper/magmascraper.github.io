@@ -12,8 +12,8 @@ export class MockDataService {
 
   getData(searchText: string): Promise<any> {
     return this.httpClient
-            .get(`http://localhost:9090/data?search=${searchText}`)
-            .toPromise()
+            .get(`http://magmabytes.com/data?search=${searchText}`)
+            .toPromise();
 
   }
 

@@ -5,3 +5,6 @@
   </mat-form-field>  
   <mat-icon aria-hidden="false">search</mat-icon>
 </div>
+<div class="error" *ngIf="error">
+  {{ error.message }}
+</div>
