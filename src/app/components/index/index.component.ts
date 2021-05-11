@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { WebItems } from '../../models/web-items';
 import { MockDataService } from 'src/app/services/mock-data.service';
-import { WebItemsWrapper } from 'src/app/models/web-items-wrapper';
+import { Loader } from 'src/app/models/loader';
 
 @Component({
   selector: 'app-index',
@@ -12,29 +12,23 @@ import { WebItemsWrapper } from 'src/app/models/web-items-wrapper';
 export class IndexComponent implements OnInit {
 
   textSearchSubject: Subject<any>;
-  webItemsWrapper: any;
+  loader: Loader<Observable<WebItems[]>>;
+  textToSearch: string = '';
+  observable: Observable<WebItems[]> = new Observable();
 
   constructor(private readonly mockDataService: MockDataService) {
     this.textSearchSubject = new Subject();
-    this.webItemsWrapper = new WebItemsWrapper();
+    this.loader = new Loader();
+    this.loader.isLoading = false;
   }
 
   ngOnInit(): void {
+    this.loader.isLoading = true;
     this.textSearchSubject.subscribe(text => {
-      this.mockDataService.getData(text)
-        .then((webItems: WebItems[]) => {
-          this.webItemsWrapper = {
-            webItems: webItems,
-            isError: false,
-            textToSearch: text
-          };
-        })
-        .catch(error => {
-          this.webItemsWrapper = {
-            isError: true,
-            error: error
-          };
-        });
+      this.observable = this.mockDataService.getData(text);
+      this.textToSearch = text;
+      this.loader.isLoading = true;
+      this.loader.data = this.observable;
     });
     this.textSearchSubject.next('');
   }

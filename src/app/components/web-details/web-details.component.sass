@@ -70,3 +70,36 @@ mat-card-actions
 .mat-card:not([class*=mat-elevation-z0]):hover
   box-shadow : none!important
 
+.dot 
+  height: 40px
+  width: 40px
+  background-color : #e7f6fc
+  border-radius : 50%
+  display: inline-block
+
+@keyframes load 
+    from 
+      left: -12px    
+    to
+      left: 11%   
+
+.rectangle
+  width : 95%
+  background-color : #e7f6fc
+  height: 10px
+  margin-bottom : 5px
+
+.rectangle::before
+  content: ''
+  display: block
+  position: relative
+  left: 0px
+  top: 0
+  height: 10px
+  width: 95%
+  background: linear-gradient(to right, transparent 0%, #c6efff 50%, transparent 100%)
+  animation: load 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite
+
+
+
+

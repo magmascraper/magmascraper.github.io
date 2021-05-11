@@ -1,12 +1,15 @@
-<div *ngIf="webItemsWrapper.isError" class="error">
-  {{error.message}}
+<div *ngIf="loader.isError && loader.data" class="error">
+  {{ loader.data }}
 </div>
 
-<div class="resultSearch" *ngIf="!webItemsWrapper.isError">
-  <div *ngIf="webItemsWrapper.textToSearch">Results for: {{ webItemsWrapper.textToSearch }}<br/><br/></div> 
-  <div *ngIf="!webItemsWrapper.textToSearch">All results, use search to fillter<br/><br/></div> 
+<div class="resultSearch">
+  <div *ngIf="textToSearch">Results for: {{ textToSearch }}<br /><br /></div>
+  <div *ngIf="!textToSearch">All results, use search to fillter<br /><br /></div>
+</div>
+
+<div class="resultSearch" *ngIf="!loader.isError && !loader.isLoading">
   <div fxLayout="row wrap" fxLayoutGap="10px grid">
-    <div fxFlex="25%" fxFlex.xs="95%" fxFlex.sm="30%" *ngFor="let item of webItemsWrapper.webItems">
+    <div fxFlex="25%" fxFlex.xs="95%" fxFlex.sm="30%" *ngFor="let item of (loader.data | async) ">
 
       <mat-card class="card">
         <mat-card-header>
@@ -27,10 +30,42 @@
           {{item.url}}
         </p>
         <mat-card-actions>
-          <a href="{{item.url}}" target="_blank" mat-button class="button">Visit</a>          
+          <a href="{{item.url}}" target="_blank" mat-button class="button">Visit</a>
         </mat-card-actions>
       </mat-card>
 
     </div>
   </div>
+</div>
+
+<div class="resultSearch" *ngIf="!loader.isError && loader.isLoading">
+  <div fxLayout="row wrap" fxLayoutGap="10px grid">
+    <div fxFlex="25%" fxFlex.xs="95%" fxFlex.sm="30%" *ngFor="let i of [1, 2, 3, 4, 5]">
+      <mat-card class="card">
+        <mat-card-header>
+          <div mat-card-avatar class="dot"></div>
+          <mat-card-title class="rectangle"></mat-card-title>
+          <mat-card-subtitle>
+            <mat-chip-list class="chip" cdkDropList cdkDropListOrientation="horizontal">
+              <mat-chip class="box" cdkDrag *ngFor="let i of [1, 2]">
+                &nbsp;&nbsp;&nbsp;&nbsp;
+              </mat-chip>
+            </mat-chip-list>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="rectangle" *ngFor="let i of [1, 2, 3, 4, 5]">
+          </div>
+        </mat-card-content>
+        <p>
+        </p>
+        <mat-card-actions>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="resultSearch">
+  <div *ngIf="loader.isError">Error</div>
 </div>
