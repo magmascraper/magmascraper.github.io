@@ -15,7 +15,8 @@ export class MockDataService {
 
   getData(searchText: string): Observable<WebItems[]> {
     return this.httpClient
-      .get<WebItems[]>(`http://localhost:9090/data?search=${searchText}`)
+       .get<WebItems[]>(`http://magmabytes.com/data?search=${searchText}`)
+      //.get<WebItems[]>(`http://localhost:9090/data?search=${searchText}`)
       .pipe(
         // startWith([]),
         map(item => {
