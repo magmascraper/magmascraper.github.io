@@ -1,5 +1,5 @@
 export class Loader<T> {
   isError = false;
-  data: T | undefined;
+  data: T | any;
   isLoading = false;
 }

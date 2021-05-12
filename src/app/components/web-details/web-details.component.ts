@@ -11,7 +11,7 @@ import { WebItems } from 'src/app/models/web-items';
 export class WebDetailsComponent implements OnInit/*, OnChanges*/ {
 
   @Input() textToSearch: string = '';
-  @Input() loader: Loader<Observable<WebItems[]>> = new Loader();
+  @Input() observableLoader: Observable<Loader<WebItems[]>> = new Observable();
   error: any = {};
 
   constructor() {
