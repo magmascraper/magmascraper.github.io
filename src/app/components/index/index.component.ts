@@ -14,21 +14,21 @@ export class IndexComponent implements OnInit {
   textSearchSubject: Subject<any>;
   loader: Loader<Observable<WebItems[]>>;
   textToSearch: string = '';
-  observable: Observable<WebItems[]> = new Observable();
+  isLoading = false;
 
   constructor(private readonly mockDataService: MockDataService) {
     this.textSearchSubject = new Subject();
     this.loader = new Loader();
-    this.loader.isLoading = false;
   }
 
   ngOnInit(): void {
-    this.loader.isLoading = true;
     this.textSearchSubject.subscribe(text => {
-      this.observable = this.mockDataService.getData(text);
+      const observable: Observable<WebItems[]> = this.mockDataService.getData(text);
+      this.loader = new Loader();
       this.textToSearch = text;
       this.loader.isLoading = true;
-      this.loader.data = this.observable;
+      this.loader.data = observable;
+      console.log('passing object', this.loader);
     });
     this.textSearchSubject.next('');
   }

@@ -1,3 +1,6 @@
 <app-navbar></app-navbar>
 <app-search-bar [textSearchSubject]="textSearchSubject"></app-search-bar>
-<app-web-details [loader]="loader" [textToSearch]="textToSearch"></app-web-details>
+<!--<div *ngIf="(loader.data | async) as loader">  -->  
+  <app-web-details [loader]="loader" [textToSearch]="textToSearch"></app-web-details>  
+<!--</div>-->
+
