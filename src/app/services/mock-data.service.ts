@@ -4,6 +4,7 @@ import { WebItems } from '../models/web-items';
 import { catchError, map, startWith } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Loader } from '../models/loader';
+import { environment as env } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,7 @@ export class MockDataService {
     loader.isError = false;
 
     return this.httpClient
-      // .get<WebItems[]>(`http://magmabytes.com/data?search=${searchText}`)
-      .get<WebItems[]>(`http://localhost:9090/data?search=${searchText}`)
+      .get<WebItems[]>(`${env.webItemsUrl}?search=${searchText}`)
       .pipe(
         startWith([]),
         map((items: WebItems[]) => {
