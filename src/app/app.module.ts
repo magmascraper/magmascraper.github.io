@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { IndexComponent } from './components/index/index.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { WebDetailsComponent } from './components/web-details/web-details.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -20,33 +21,50 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MockDataService } from '../app/services/mock-data.service';
-import { WebDetailsComponent } from './components/web-details/web-details.component';
+
+const appModules = [
+  AppComponent,
+  IndexComponent,
+  NavbarComponent,
+  SearchBarComponent,
+  WebDetailsComponent
+];
+
+const materialModules = [
+  MatToolbarModule,
+  MatIconModule,
+  MatFormFieldModule,
+  MatInputModule,
+  ReactiveFormsModule,
+  HttpClientModule,
+  MatCardModule,
+  MatChipsModule,
+  MatGridListModule,
+  FlexLayoutModule
+];
+
+const services = [
+  MockDataService
+];
+
+const imports = [
+  BrowserModule,
+  AppRoutingModule,
+  BrowserAnimationsModule,
+  ...materialModules
+];
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    IndexComponent,
-    NavbarComponent,
-    SearchBarComponent,
-    WebDetailsComponent
+    ...appModules
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatCardModule,
-    MatChipsModule,
-    MatGridListModule,
-    FlexLayoutModule
+    ... imports
   ],
-  providers: [MockDataService],
+  providers: [
+    ...services
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

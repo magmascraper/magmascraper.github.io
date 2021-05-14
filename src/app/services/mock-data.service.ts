@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { WebItems } from '../models/web-items';
-import { catchError, defaultIfEmpty, map, startWith } from 'rxjs/operators';
-import { concat, Observable, of } from 'rxjs';
+import { catchError, map, startWith } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 import { Loader } from '../models/loader';
 
 @Injectable({
@@ -12,24 +12,6 @@ export class MockDataService {
 
   constructor(private readonly httpClient: HttpClient) {
   }
-/*
-  getData(searchText: string): Observable<WebItems[]> {
-    return this.httpClient
-      // .get<WebItems[]>(`http://magmabytes.com/data?search=${searchText}`)
-      .get<WebItems[]>(`http://localhost:9090/data?search=${searchText}`)
-      .pipe(
-        // startWith([]),
-        map(item => {
-          item.forEach(i => {
-            i.description = !searchText ? i.description : searchText;
-          });
-          return item;
-        }),
-        catchError(error => {
-          return of(error);
-        })
-      );
-  }*/
 
   getDataLoader(searchText: string): Observable<Loader<WebItems[]>> {
 
@@ -38,7 +20,8 @@ export class MockDataService {
     loader.isError = false;
 
     return this.httpClient
-      .get<WebItems[]>(`http://magmabytes.com/data?search=${searchText}`)
+      // .get<WebItems[]>(`http://magmabytes.com/data?search=${searchText}`)
+      .get<WebItems[]>(`http://localhost:9090/data?search=${searchText}`)
       .pipe(
         startWith([]),
         map((items: WebItems[]) => {

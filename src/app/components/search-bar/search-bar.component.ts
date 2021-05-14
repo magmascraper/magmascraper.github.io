@@ -10,12 +10,16 @@ import { FormControl } from '@angular/forms';
 })
 export class SearchBarComponent implements OnInit {
 
-  @Input() textSearchSubject: Subject<any> = new Subject();
-  formControl: FormControl = new FormControl('');
-  textSubject: Subject<string> = new Subject();
+  @Input() textSearchSubject: Subject<string>;
+  formControl: FormControl;
+  textSubject: Subject<string>;
   error: any;
 
-  constructor() {}
+  constructor() {
+    this.textSearchSubject = new Subject();
+    this.formControl = new FormControl('');
+    this.textSubject = new Subject();
+  }
 
   ngOnInit(): void {
     this.formControl.valueChanges.subscribe(() => {

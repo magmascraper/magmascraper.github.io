@@ -10,12 +10,14 @@ import { Loader } from 'src/app/models/loader';
   styleUrls: ['./index.component.sass']
 })
 export class IndexComponent implements OnInit {
-  textSearchSubject: Subject<any>;
-  textToSearch: string = '';
-  observableLoader: Observable<Loader<WebItems[]>> = new Observable();
+  textSearchSubject: Subject<string>;
+  textToSearch: string;
+  observableLoader: Observable<Loader<WebItems[]>>;
 
   constructor(private readonly mockDataService: MockDataService) {
     this.textSearchSubject = new Subject();
+    this.textToSearch = '';
+    this.observableLoader = new Observable();
   }
 
   ngOnInit(): void {
