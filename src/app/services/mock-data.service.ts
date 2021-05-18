@@ -11,7 +11,7 @@ import { environment as env } from '../../environments/environment';
 })
 export class MockDataService {
 
-  constructor(private readonly httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient) {
   }
 
   getDataLoader(searchText: string): Observable<Loader<WebItems[]>> {
@@ -25,6 +25,7 @@ export class MockDataService {
       .pipe(
         startWith([]),
         map((items: WebItems[]) => {
+          if (!items) { items = []; }
           items.forEach(i => {
             i.description = !searchText ? i.description : searchText;
           });
@@ -32,7 +33,6 @@ export class MockDataService {
           return loader;
         }),
         catchError((error: HttpErrorResponse) => {
-          console.log(error);
           loader.isError = true;
           loader.data = error;
           return of(loader);

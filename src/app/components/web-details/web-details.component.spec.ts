@@ -22,4 +22,36 @@ describe('WebDetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('text to search should shown', () => {
+    // given
+    const textToSearch = 'hello';
+    const fixture = TestBed.createComponent(WebDetailsComponent);
+    const comp = fixture.componentInstance;
+
+    // when
+    comp.textToSearch = textToSearch;
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+
+    // then
+    expect(compiled.querySelector('#resultSearchText').textContent).toContain(textToSearch);
+  });
+
+
+  it('no text to search', () => {
+    // given
+    const textToSearch = 'All results, use search to fillter';
+    const fixture = TestBed.createComponent(WebDetailsComponent);
+    const comp = fixture.componentInstance;
+
+    // when
+    comp.textToSearch = textToSearch;
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+
+    // then
+    expect(compiled.querySelector('#resultSearchText').textContent).toContain(textToSearch);
+  });
+
 });

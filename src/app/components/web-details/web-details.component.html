@@ -1,6 +1,6 @@
 <div class="resultSearch">
-  <div *ngIf="textToSearch">Results for: {{ textToSearch }}<br /><br /></div>
-  <div *ngIf="!textToSearch">All results, use search to fillter<br /><br /></div>
+  <div *ngIf="textToSearch">Results for: <span id="resultSearchText">{{ textToSearch }}</span><br /><br /></div>
+  <div *ngIf="!textToSearch"><div id="resultSearchText">All results, use search to fillter</div><br /><br /></div>
 </div>
 
 
