@@ -23,7 +23,7 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
     this.textSearchSubject.subscribe(text => {
       this.textToSearch = text;
-      this.observableLoader = this.mockDataService.getDataLoader(text);
+      this.observableLoader = this.mockDataService.getLoader(text);
     });
     this.textSearchSubject.next('');
   }

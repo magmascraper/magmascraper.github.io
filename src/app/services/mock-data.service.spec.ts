@@ -33,7 +33,7 @@ describe('MockDataService', () => {
     let webItems: WebItems[] = [];
 
     // when
-    service.getDataLoader(textToSearch).subscribe(loader => {
+    service.getLoader(textToSearch).subscribe(loader => {
       webItems = loader.data;
 
       // then
@@ -53,7 +53,7 @@ describe('MockDataService', () => {
     httpClientSpy.get.and.returnValue(of(null));
 
     // when
-    otherService.getDataLoader(textToSearch)
+    otherService.getLoader(textToSearch)
       .subscribe(
         loader => {
 
@@ -77,7 +77,7 @@ describe('MockDataService', () => {
     httpClientSpy.get.and.returnValue(of([]));
 
     // when
-    otherService.getDataLoader(textToSearch)
+    otherService.getLoader(textToSearch)
       .subscribe(
         loader => {
 
@@ -104,7 +104,7 @@ describe('MockDataService', () => {
     httpClientSpy.get.and.returnValue(of(errorResponse));
 
     // when
-    otherService.getDataLoader(textToSearch)
+    otherService.getLoader(textToSearch)
     .subscribe(
       loader => {
 
